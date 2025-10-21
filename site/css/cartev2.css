@@ -1,0 +1,213 @@
+
+        /* ====================
+            Règles Générales et Corps
+            ==================== */
+        body {
+            background-color: #000;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Titre principal pour les projets */
+        .stage-title {
+            color: white;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: 15vh;
+        }
+
+        /* ====================
+            Conteneur des Cartes (50px d'espace)
+            ==================== */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 20px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        /* ====================
+            Règles pour les Cartes
+            ==================== */
+        .card {
+            overflow: visible;
+            width: 190px;
+            height: 254px;
+            flex-shrink: 0;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            transition: box-shadow 300ms;
+            box-shadow: 0px 0px 10px 1px #000000ee;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: opacity 300ms;
+            top: 0;
+            left: 0;
+        }
+
+        /* 1. Style pour la face avant de toutes les cartes */
+        .front {
+            background-color: #151515;
+            color: white;
+            z-index: 2;
+            inset: 2px;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            transition: border-color 0.3s ease;
+        }
+
+        /* 2. La face arrière (Glow) de toutes les cartes */
+        .back {
+            background-color: #151515;
+            z-index: 1;
+            opacity: 0;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Affiche la couche de lueur au survol */
+        .card:hover .back {
+            opacity: 1;
+        }
+
+        /* ====================
+            Face Arrière (Glow Border)
+            ==================== */
+        .back::before {
+            position: absolute;
+            content: ' ';
+            display: block;
+            width: 160px;
+            height: 160%;
+            background: linear-gradient(90deg, transparent, #fff, #fff, #fff, #fff, transparent);
+            animation: rotation_481 5000ms infinite linear;
+        }
+
+        @keyframes rotation_481 {
+            0% {
+                transform: rotateZ(0deg);
+            }
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        /* ====================
+            Règles Spécifiques pour la Carte Basique
+            (Seules les cartes basiques sont utilisées dans le HTML)
+            ==================== */
+
+        /* Rend la carte noire (surcharge le background-color: #151515 de .front) */
+        .card-basic .front {
+            background-color: #000;
+            border: 1px solid #333;
+        }
+
+        .card-basic:hover .front {
+            border-color: #777;
+        }
+
+        /* Cache les éléments lumineux (circles) - Ils sont inutiles ici */
+        .card-basic .img {
+            display: none;
+        }
+
+        /* Centrage parfait pour le contenu de la carte basique */
+        .card-basic .front-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .basic-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        
+        /* ====================
+            Règles pour le Logo/Image de Lien
+            ==================== */
+        .img-link img {
+            position: absolute;
+            top: 5%;
+            left: 10%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 30;
+        }
+
+        .img-link img:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+        }
+        
+        /* ====================
+            Règles Responsive
+            ==================== */
+        @media (max-width: 600px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .card {
+                margin-bottom: 20px;
+            }
+            .stage-title {
+                margin-top: 30px;
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+            }
+            .img-link img {
+                width: 80px; /* plus petit sur mobile */
+                top: 20px; /* Positionnement ajusté pour la vue mobile */
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* La règle suivante est conservée même si elle est redondante avec (max-width: 600px) 
+           car elle définit un gap spécifique à une plus petite taille. */
+        @media (max-width: 500px) {
+            .cards-container {
+                gap: 20px;
+            }
+        }

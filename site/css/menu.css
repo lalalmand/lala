@@ -1,0 +1,153 @@
+.bodyMenu {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #000000;
+}
+
+/* Le Menu Burger (l'Overlay) */
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Rendu responsive: occupe 100% de la largeur */
+    height: 100%; /* Rendu responsive: occupe 100% de la hauteur */
+    background-color: #000000; 
+    z-index: 100;
+    transform: translateX(-100%); 
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Affichage du menu */
+.overlay-menu.open {
+    transform: translateX(0);
+}
+
+/* --- Styles des Liens du Menu --- */
+.menu-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    z-index: 102;
+}
+
+.menu-links li {
+    margin: 30px 0;
+    opacity: 0; 
+    transition: opacity 0.5s ease 0.3s;
+}
+
+.overlay-menu.open .menu-links li {
+    opacity: 1;
+}
+
+.menu-links a {
+    color: rgba(255, 255, 255, 0.571);
+    text-decoration: none;
+    font-size: 2.5em; /* Ajustez cette taille pour le mobile si besoin */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu-links a:hover {
+    color: white;
+}
+
+
+/* --- Styles du Bouton Burger (Fixé en haut à droite) --- */
+.burger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 110; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box; 
+    
+    /* 💡 CORRECTION 1 : Supprimer l'outline (contour de focus) */
+    outline: none; 
+    
+    /* 💡 CORRECTION 2 : Supprimer l'ombre/box et les filtres par défaut */
+    box-shadow: none;
+    filter: none;
+}
+
+/* 💡 CORRECTION 3 : Supprimer l'effet de survol (hover) */
+.burger-menu:hover {
+    box-shadow: none;
+    filter: none;
+    border: none;
+}
+
+/* 💡 CORRECTION 4 : Supprimer l'effet de focus pour l'accessibilité */
+.burger-menu:focus,
+.burger-menu:focus-visible {
+    outline: none;
+    box-shadow: none;
+    filter: none;
+}
+
+.barMenu {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* 💥 Animation de la transformation en croix (X) 💥 */
+.burger-menu.active .barMenu:nth-child(2) {
+    opacity: 0; /* La barre du milieu disparaît */
+}
+
+.burger-menu.active .barMenu:nth-child(1) {
+    /* Barre supérieure: Déplacement vers le centre + rotation */
+    transform: translateY(13px) rotate(45deg); 
+}
+
+.burger-menu.active .barMenu:nth-child(3) {
+    /* Barre inférieure: Déplacement vers le centre + rotation */
+    transform: translateY(-13px) rotate(-45deg);
+}
+
+/* --- Le Ciel Étoilé (Fond du Menu) --- */
+.stars-containerMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Style de base d'une étoile */
+.starMenu {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.8); 
+    opacity: 0;
+}
+
+/* Animation de scintillement des étoiles */
+@keyframes twinkle {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,38 @@
+/* Style de la Fusée (Rocket to Top) - Conteneur */
+.rocket-to-top {
+    display: block; /* Doit être 'block' ou 'inline-block' pour width/height */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    
+    /* === NOUVEAU : Image par défaut (arrow-up.png) === */
+    background-image: url('../image/fusee.png'); 
+    background-size: 70%; /* Ajustez la taille de l'image si besoin, 70% est un bon début */
+    background-repeat: no-repeat;
+    background-position: center; /* Centre l'image dans le cercle */
+    
+    background-color: black; /* Couleur de fond du bouton */
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden; 
+}
+
+/* Apparition et animation au survol */
+.rocket-to-top:hover {
+    /* === MODIFICATION : Changement de l'image de fond au survol === */
+    background-image: url('../image/fuseev2.png'); /* ⬅️ Votre image au survol */
+    
+    background-color: black; /* Changement de couleur de fond comme avant */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px) rotate(-15deg); 
+}
+
+/* Classe pour forcer l'affichage (ajoutée par JS) */
+.rocket-to-top.show {
+    display: block;
+}

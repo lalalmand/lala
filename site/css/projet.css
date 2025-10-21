@@ -1,0 +1,335 @@
+
+        
+/* ------------------------------------------------ */
+/* PERSONNALISATION DE LA BARRE DE DÉFILEMENT (BODY) */
+/* ------------------------------------------------ */
+
+/* 1. Définir la taille globale de la barre */
+body::-webkit-scrollbar {
+    width: 12px !important; /* Largeur de la barre */
+    height: 12px !important; /* Hauteur de la barre pour le défilement horizontal */
+}
+
+/* 2. FORCER LA DISPARITION DE LA BARRE BLANCHE (LA PISTE) SUR LE BODY */
+body::-webkit-scrollbar-track {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 3. Définir la POIGNÉE (La barre grise) - Couleur unie pour le body */
+body::-webkit-scrollbar-thumb {
+    background-image: none !important; /* Pas d'image pour le body */
+    background-size: auto !important;
+    background-repeat: repeat !important;
+    background-position: auto !important;
+
+    background-color: #555 !important; /* Couleur unie sombre */
+    
+    border-radius: 6px !important; 
+    border: 2px solid transparent !important; 
+}
+
+
+/* ------------------------------------------------ */
+/* FIX : BARRE DE DÉFILEMENT DE LA CARTE AGRANDIE (.details-content) */
+/* ------------------------------------------------ */
+
+/* Cible l'élément de contenu détaillé UNIQUEMENT quand la carte est en focus (agrandie) */
+
+/* 1. Rendre la piste (la barre blanche) transparente pour le contenu détaillé */
+.card-link:focus-within .details-content::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+
+/* 2. Style de la poignée (le "pouce" qui défile) pour le contenu détaillé */
+.card-link:focus-within .details-content::-webkit-scrollbar-thumb {
+    
+    /* MODIFICATIONS CLÉS POUR QUE LA BARRE PRENNE LA FORME DE LA FUSÉE */
+    /* On utilise border-image pour "mouler" le thumb sur la fusée */
+    
+    /* 1. Définir la bordure (nécessaire pour border-image) */
+    border-width: 25px 0 !important; /* 25px en haut/bas pour inclure la fusée */
+    border-style: solid !important;
+    border-color: transparent !important;
+    
+    /* 2. Appliquer l'image de la fusée comme bordure */
+    /* La propriété border-image-slice: 25 permet de garder les 25px du haut et du bas de l'image (la tête et les flammes) */
+    border-image: url('./image/fuseev2.png') 25 0 repeat !important; 
+
+    /* On réinitialise les propriétés de background précédentes pour éviter les conflits */
+    background: transparent !important;
+    background-image: none !important;
+    
+    /* On enlève le border-radius et le background-color qui pourraient perturber l'effet */
+    border-radius: 0 !important; 
+    
+    /* Le 'width' du scrollbar-thumb est géré par la propriété width ci-dessous */
+}
+
+/* 3. Définir la taille de la barre pour le contenu détaillé */
+.card-link:focus-within .details-content::-webkit-scrollbar {
+    /* Le width doit être suffisant pour contenir la fusée (largeur de l'image) */
+    width: 50px !important; 
+}
+
+
+/* ------------------------------------------------ */
+/* CSS GÉNÉRAL (Votre code existant) */
+/* ------------------------------------------------ */
+
+        /* ====================
+            Règles Générales et Corps
+            ==================== */
+        body {
+            background-color: #000;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Titre principal pour les projets */
+        .stage-title {
+            color: white;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: 15vh;
+        }
+
+        /* ====================
+            Conteneur des Cartes (COLONNE)
+            ==================== */
+        .cards-container {
+            display: flex;
+            flex-direction: column; /* Cartes l'une sous l'autre */
+            justify-content: center;
+            align-items: center;
+            gap: 50px; 
+            flex-wrap: wrap;
+            padding: 20px;
+            position: relative;
+            margin-bottom: 50px;
+            z-index: 10; 
+        }
+
+        /* Lien de la carte (le conteneur de la carte) */
+        .card-link {
+            text-decoration: none;
+            display: block;
+            width: 400px;
+            height: 95px;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+            position: relative;
+            z-index: 10;
+            outline: none;
+        }
+
+
+        /* ====================
+            Règles pour la CARTE
+            ==================== */
+        .card { 
+            width: 100%;
+            height: 100%;
+            position: relative; 
+            border-radius: 5px;
+            /* overflow: hidden; (laissé en commentaire pour ne pas couper le trait) */
+        }
+
+        /* ====================
+            Face de Glow (Visible par défaut)
+            ==================== */
+        .back-glow {
+            position: absolute;
+            top: -2px; 
+            left: -2px;
+            width: calc(100% + 4px); 
+            height: calc(100% + 4px); 
+            background-color: transparent; 
+            z-index: 0; 
+            opacity: 1; /* Visible par défaut */
+            transition: opacity 0.3s ease;
+            border-radius: 5px;
+            overflow: hidden; 
+        }
+
+        /* Masque le Glow UNIQUEMENT au focus/clic */
+        .card-link:focus-within .back-glow { 
+            opacity: 0; 
+        }
+
+        /* Animation du Glow */
+        .back-glow::before {
+            position: absolute;
+            content: ' ';
+            display: block;
+            width: 400px; 
+            height: 100px;
+            background: linear-gradient(90deg, transparent, #fff, #fff, #fff, #fff, transparent);
+            animation: rotation_481 5500ms infinite linear;
+            top: -10%; 
+            left: 10%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes rotation_481 {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+
+        /* ====================
+            Contenu de la carte
+            ==================== */
+        .content {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            border: 1px solid #333;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            transition: background-color 0.6s;
+            box-shadow: 0px 0px 10px 1px #000000ee;
+            padding: 0;
+            box-sizing: border-box;
+            position: relative; 
+            z-index: 1; /* Au-dessus du glow */
+        }
+
+        .basic-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        /* Détails cachés par défaut */
+        .details-content {
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            padding: 0 15px;
+            overflow-y: hidden;
+            text-align: left;
+            transition: opacity 0.3s, visibility 0.3s, height 0.3s;
+        }
+
+        .details-content h3 {
+            font-size: 1.5em;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .details-content p {
+            font-size: 1em;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+
+        /* ====================
+            EFFET D'AGRANDISSEMENT (FOCUS / CLIC UNIQUEMENT)
+            ==================== */
+
+        /* Les autres cartes disparaissent au focus */
+        .cards-container:focus-within .card-link:not(:focus-within) {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* Agrandissement UNIQUEMENT au focus (clic/tab) */
+        .card-link:focus-within {
+            position: fixed; 
+            top: 100px; 
+            left: 50%;
+            width: 90vw; 
+            max-width: 900px;
+            height: 80vh; 
+            
+            transform: translateX(-50%) scale(1.05); 
+            z-index: 100; 
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .card-link:focus-within .content {
+            background-color: #111; 
+            border: 1px solid #777;
+            padding: 20px;
+            height: 100%; 
+            justify-content: flex-start; 
+        }
+
+        /* Masque le titre court au focus */
+        .card-link:focus-within .basic-title {
+            display: none;
+        }
+
+        /* Affiche le contenu détaillé au focus */
+        .card-link:focus-within .details-content {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            overflow-y: auto; /* MAINTIENT LE DÉFILEMENT POUR LE TEXTE LONG */
+            flex-grow: 1;
+        }
+
+        /* ====================
+            Règles pour le Logo/Image de Lien et Responsive
+            ==================== */
+         .img-link img {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30;
+  }
+  
+  .img-link img:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+   @media screen and (max-width: 600px) {
+    .img-link img {
+      width: 80px; /* plus petit sur mobile */
+    }
+  }
+        
+        @media (max-width: 600px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+                gap: 20px;
+            }
+            .stage-title {
+                margin-top: 150px; 
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+            }
+            
+            .card-link:focus-within {
+                width: 95vw;
+                height: 70vh;
+                top: 15vh;
+            }
+        }
