@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet : Journée d'Intégration SIO</title>
+    <link rel="stylesheet" href="../css/integration.css"> 
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<a id="rocket-to-top" class="rocket-to-top" href="#" aria-label="Retour en haut de page">
+</a>
+
+<body>
+    <a href="../index.html" class="img-link">
+        <picture>
+            <source media="(max-width: 600px)" srcset="../image/logoNoirResponsive.png">
+            <img src="../image/logoNoir.png" alt="logo">
+        </picture>
+    </a>
+
+    <div class="bodyMenu">
+        <button class="burger-menu" aria-label="Ouvrir le menu">
+            <div class="barMenu"></div>
+            <div class="barMenu"></div>
+            <div class="barMenu"></div>
+        </button>
+
+        <nav class="overlay-menu">
+            <div id="stars-containerMenu" class="stars-containerMenu"></div>
+            <ul class="menu-links">
+                <li><a href="cv.html">Cv</a></li>
+                <li><a href="competence.html">Compétences</a></li>
+                <li><a href="stages.html">Stages</a></li>
+                <li><a href="veille.html">Veilles</a></li>
+                <li><a href="projet.html">Projets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/fusee.js"></script>
+
+    <div class="report-content">
+        <br><br>
+        <h1>Phase 1 : Maintenance de la Version 1 </h1>
+
+        <h2>Contexte</h2>
+        <p>
+            Ce projet s'inscrivait dans le cadre d'une journée d'intégration pour les SIO1. Nous avons été chargés de la maintenance de la version 1 (V1) d'une application existante.
+        </p>
+        <p>
+            L'application en question était une application de gestion des développeurs et de leurs compétences, développée en PHP avec une base de données MySQL. Notre objectif principal était de corriger les bugs signalés par les utilisateurs finaux et d'améliorer certaines fonctionnalités existantes.
+        </p>
+
+        <h2>Tâches Réalisées</h2>
+        <p>
+            Nous avons reçu des demandes d'intervention (tickets) via l'application de ticketing GLPI, qui centralise les retours des utilisateurs finaux.
+        </p>
+
+        <h3>Exemple de ticket : </h3>
+        <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket3_Inte.png" alt="Ticket GLPI n°3 : Dysfonctionnement lié à l'affichage des compétences." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket1_Inte.png" alt="Ticket GLPI n°1 : Demande d'amélioration sur la recherche de développeurs." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket2_Inte.png" alt="Ticket GLPI n°2 : Bug dans la modification des données développeur." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket4_Inte.png" alt="Ticket GLPI n°4 : Problème de format de données dans le fichier JSON." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+        </div>
+
+        <p>Notre mission principale sur cette V1 était le traitement de 4 tickets dans l'ordre de leurs numéros. Pour chaque ticket:</p>
+<ul>
+    <li>Analyse du ticket pour comprendre le dysfonctionnement ou l'amélioration demandée.</li>
+    <li>Création d'une nouvelle branche du projet pour isoler la correction.</li>
+    <li>Correction du défaut ou implémentation de l'amélioration.</li>
+    <li>Vérification de la correction.</li>
+    <li>Validation de la correction et fusion de la branche de correction avec la branche principale.</li>
+</ul>
+        
+        
+
+        <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/salleJson_Inte.png" alt="Extrait de code PHP gérant les données de salle JSON." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/FichierJson_Inte.png" alt="Structure du fichier de données JSON utilisé par l'application." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/vueSalle_Inte.png" alt="Code de la vue front-end affichant les salles." onclick="openModal(this)">
+            </div>
+
+            <div class="image-wrapper">
+            <img src="../image/aterlierPro/Integration/visuSalle_Inte.png" alt="Visualisation de la correction de l'affichage des salles après intervention." onclick="openModal(this)">
+        </div>
+
+        </div>
+        
+       
+
+        <div style="clear: both;"></div> 
+
+        <hr>
+
+        <h1>Phase 2 : Évolution de la Version 1 </h1>
+        <p>
+            Ensuite, nous sommes passés à l'évolution de l'application pour améliorer son évolutivité en intégrant le modèle DAO. L'objectif principal était de séparer la logique métier de l'accès aux données, facilitant ainsi les futurs changements de sources de données.
+        </p>
+
+        <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/BaseMVC_Inte.png" alt="Diagramme de l'architecture MVC avant l'implémentation du DAO." onclick="openModal(this)">
+                <span class="hover-text">Avant l'implémentation du DAO</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/baseDAO_Inte.png" alt="Diagramme de l'architecture avec l'intégration du Design Pattern DAO." onclick="openModal(this)">
+                <span class="hover-text">Avec le DAO</span>
+            </div>
+             <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/developpeur_Inte.png" alt="Diagramme de l'architecture avec l'intégration du Design Pattern DAO." onclick="openModal(this)">
+                <span class="hover-text">Avec le DAO</span>
+            </div>
+        </div>
+
+        <h2>Tâches Réalisées</h2>
+        <p>
+            La tâche majeure de cette phase était la mise en place de nouvelles fonctionnalités en utilisant ce design pattern DAO :
+        </p>
+        <ul>
+            <li>Développeurs : Ajout des fonctionnalités 'Suppression d'un développeur', 'Ajout d'un développeur', et 'Modification d'un développeur'.</li>
+            <li>Compétences : Ajout des fonctionnalités 'Liste des compétences' et 'Suppression d'une compétence'.</li>
+        </ul>
+        <h3>Exemple fonctionnalité modifier un développeur</h3>
+
+        <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/caseModif_Inte.png" alt="Interface de modification d'un développeur." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/methodeModif_Inte.png" alt="Extrait de la méthode de modification dans la classe DAO." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/vueApropos.png" alt="Code de la vue 'À Propos' de l'application." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/visuelApropos_Inte.png" alt="Visualisation de la page 'À Propos' de l'application." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/resultatMofier_Inte.png" alt="Résultat de la modification des informations d'un développeur." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/resultatAprops_Inte.png" alt="Visualisation du résultat final de la page 'À Propos'." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/version_Inte.png" alt="Interface de modification d'un développeur." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/branche_Inte.png" alt="Extrait de la méthode de modification dans la classe DAO." onclick="openModal(this)">
+            </div>
+            </div>
+            <h3>Sécurité</h3>
+        <p>Pour garantir la sécurité et le bon fonctionnement de l'application, nous avons implémenté un système de gestion des droits d'accès et des permissions basé sur les rôles utilisateurs.</p>
+        
+        <div style="clear: both;"></div> 
+
+        <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/methodeConnexion_Inte.png" alt="Méthode de connexion et d'authentification des utilisateurs." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/configBDD_Inte.png" alt="Configuration de la connexion à la base de données MySQL." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/droitUtilisateur_Inte.png" alt="Gestion des droits et permissions des différents types d'utilisateurs." onclick="openModal(this)">
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/createUser_Inte.png" alt="Creation des User avec leur mot de passe." onclick="openModal(this)">
+            </div>
+        </div>
+
+        <div id="modal-image" onclick="closeModal()">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(element) {
+            document.getElementById("modal-image").style.display = "flex";
+            document.getElementById("img01").src = element.src;
+            document.getElementById("caption").innerHTML = element.alt;
+        }
+
+        function closeModal() {
+            document.getElementById("modal-image").style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+ /* --- STYLES DU FOND COSMIQUE (Constellations) --- */
+  body {
+    margin: 0;
+    overflow: hidden; /* Empêche le défilement du corps */
+    background-color: #000; /* Fond noir pour le ciel */
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* La couche SVG doit être positionnée absolument derrière le contenu */
+  #constellationLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Arrière-plan */
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Le groupe des lignes de la constellation */
+  .constellation-group {
+    opacity: 0;
+    cursor: pointer;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-name: appear;
+  }
+
+  /* Lignes de la constellation (Couleur grise subtile) */
+  .constellation-path {
+    stroke: #A9A9A9;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    opacity: 0.5;
+    transition: stroke-width 0.3s, stroke 0.3s, opacity 0.3s;
+  }
+  
+  /* Augmenter l'épaisseur de la ligne et éclaircir au survol */
+  .constellation-group:hover .constellation-path {
+    stroke-width: 3;
+    stroke: #38bdf8; /* Couleur cyan/bleu au survol */
+    opacity: 1;
+  }
+
+  /* Nom de la constellation (Texte SVG simple) */
+  .constellation-name {
+    fill: #ADD8E6;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(173, 216, 230, 0.8);
+  }
+
+  /* Afficher le nom au survol du groupe */
+  .constellation-group:hover .constellation-name {
+    opacity: 1;
+  }
+
+  /* Animation d'apparition/disparition pour le groupe entier */
+  @keyframes appear {
+    0% { opacity: 0; }
+    5% { opacity: 1; } 
+    95% { opacity: 1; } 
+    100% { opacity: 0; }
+  }
+
+
+  /* --- STYLES DU RAPPORT DE STAGE (Contenu visible) --- */
+
+  #report-container {
+    position: relative; /* Au-dessus de l'arrière-plan SVG */
+    z-index: 10;
+    max-width: 900px;
+    margin: 40px auto; /* Centrage et marges externes */
+    padding: 20px;
+    background-color: rgba(10, 10, 20, 0.9); /* Fond très sombre et semi-transparent */
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); /* Petit reflet bleu */
+    height: calc(100vh - 80px); /* Hauteur limitée pour le défilement */
+    overflow-y: auto; /* Permet le défilement du contenu du rapport */
+    color: #ECF0F1; /* Texte clair */
+  }
+  
+  /* Personnalisation de la barre de défilement (optionnel) */
+  #report-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  #report-container::-webkit-scrollbar-thumb {
+    background-color: #2980B9;
+    border-radius: 4px;
+  }
+  #report-container::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  h1, h2 {
+    color: #38bdf8; /* Cyan/Bleu vif */
+    text-align: center;
+    border-bottom: 2px solid #2980B9;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+  }
+  
+  ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .mission {
+    background-color: rgba(30, 30, 40, 0.9); /* Boîte légèrement plus claire */
+    border-left: 4px solid #2980B9; /* Bordure bleue */
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  }
+  
+  .mission h2 {
+    color: #ADD8E6;
+    text-align: left;
+    border-bottom: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    font-size: 1.5em;
+  }
+
+  .mission li {
+    margin-bottom: 5px;
+  }
+    .img-link img {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30;
+  }
+  
+   .img-link img:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+   @media screen and (max-width: 600px) {
+    .img-link img {
+      width: 80px; /* plus petit sur mobile */
+    }
+}

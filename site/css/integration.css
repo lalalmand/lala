@@ -1,0 +1,231 @@
+
+        :root {
+            --primary-blue: #38bdf8; /* sky-400 */
+            --dark-bg: #030712; /* gray-950 */
+            --card-bg: #111827; /* gray-900 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+            color: #d1d5db; /* gray-300 */
+            min-height: 100vh;
+            padding-top: 5rem; /* Espace pour le logo/menu */
+        }
+
+        /* Conteneur principal du rapport */
+        .report-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); /* Ombre subtile bleue */
+        }
+
+        /* Titres */
+        h1 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            font-weight: 700;
+            border-bottom: 3px solid #1f2937; /* gray-800 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #93c5fd; /* blue-300 */
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        p, ul {
+            margin-bottom: 1.25rem;
+            padding-left: 0.5rem;
+        }
+        
+        /* Séparateur */
+        hr {
+            border-color: #4b5563; /* gray-500 */
+            margin: 2.5rem 0;
+        }
+.img-link img {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30;
+  }
+  
+   .img-link img:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+   @media screen and (max-width: 600px) {
+    .img-link img {
+      width: 80px; /* plus petit sur mobile */
+    }
+}
+        
+.img-bien img {
+    position: relative ;
+    left: 15%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30;
+  }
+  
+   .img-bien img:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+        /* Galerie d'images (Tickets/Code) */
+        .tickets-alignes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .image-wrapper {
+            position: relative;
+            cursor: pointer;
+             width: 200px;
+            transition: transform 0.2s, box-shadow 0.3s;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+        }
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .hover-text {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(56, 189, 248, 0.9);
+            color: #000;
+            padding: 0.5rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .image-wrapper:hover .hover-text {
+            opacity: 1;
+        }
+
+        /* Modal d'image */
+        #modal-image {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        #modal-image img.modal-content {
+            max-width: 95%;
+            max-height: 80vh;
+            border-radius: 0.75rem;
+            animation: zoomIn 0.3s;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+        #modal-image #caption {
+            margin-top: 15px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.1em;
+            max-width: 90%;
+        }
+        #modal-image .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        #modal-image .close:hover {
+            color: var(--primary-blue);
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        /* Style spécifique pour la fusée (Rocket to Top) */
+        #rocket-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: none; /* Caché par défaut */
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.5);
+            transition: transform 0.3s, background 0.3s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        #rocket-to-top:hover {
+            background: #2563eb; /* blue-600 */
+            transform: scale(1.1);
+        }
+        #rocket-to-top::before {
+            content: "\f135"; /* Code pour l'icône de fusée (fa-space-shuttle) */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+        
+      
+
+        /* Placeholder pour les images manquantes */
+        .placeholder-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+            background-color: #1e293b; /* gray-800 */
+            color: #94a3b8; /* gray-400 */
+            font-size: 0.9rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            border: 1px dashed #334155; /* gray-700 */
+        }

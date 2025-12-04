@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport de Stage 1er année</title>
+<link rel="stylesheet" href="../css/rapportStage.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/fusee.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<a id="rocket-to-top" class="rocket-to-top" href="#" aria-label="Retour en haut de page"></a>
+    
+
+<body>
+    <a href="../index.html" class="img-link">
+        <picture>
+          <source media="(max-width: 600px)" srcset="../image/logoNoirResponsive.png">
+          <img src="../image/logoNoir.png" alt="logo">
+        </picture>
+      </a>
+      <div class="bodyMenu">
+
+    <button class="burger-menu" aria-label="Ouvrir le menu">
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+    </button>
+
+    <nav class="overlay-menu">
+        <div id="stars-containerMenu" class="stars-containerMenu"></div>
+
+        <ul class="menu-links">
+            <li><a href="cv.html">Cv</a></li>
+            <li><a href="competence.html">Compétences</a></li>
+            <li><a href="stages.html">Stages</a></li>
+            <li><a href="veille.html">Veilles</a></li>
+            <li><a href="projet.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</div>
+<script src="../js/menu.js"></script>
+<script src="../js/fusee.js"></script>
+<script src="../js/constelation.js"></script>
+
+<!-- Couche SVG pour les constellations (Arrière-plan fixe) -->
+<svg id="constellationLayer" width="100%" height="100%"></svg>
+
+<!-- Conteneur du Rapport de Stage (Premier plan scrollable) -->
+ <br>
+    <br><br>    
+<div id="report-container">
+    <h1>Résumé du Rapport de Stage</h1>
+
+    <div class="mission">
+        <h2>Gestion des présences/absences</h2>
+        <ul>
+            <li>Développement d’un outil pour enregistrer les heures d’arrivée et de départ des étudiants via QR Code.</li>
+            <li>Comparaison de la présence réelle avec le planning prévisionnel.</li>
+            <li>Création d’un suivi et justification des absences.</li>
+            <li>Génération de statistiques de présence par étudiant et par atelier.</li>
+            <li>Pages web pour ajouter et modifier les informations des étudiants, avec calcul automatique du total d’heures.</li>
+            <li>Interface affichant les étudiants présents et ceux censés l’être selon l’emploi du temps.</li>
+        </ul>
+    </div>
+
+    <div class="mission">
+        <h2>Prise de rendez-vous</h2>
+        <ul>
+            <li>Développement d’un outil permettant aux étudiants de consulter les créneaux disponibles.</li>
+            <li>Mise en place de la réservation directe via l’interface.</li>
+            <li>Notifications et confirmations automatiques pour étudiants et personnel.</li>
+            <li>Création d’un calendrier interactif en PHP pour le personnel.</li>
+        </ul>
+    </div>
+
+    <div class="mission">
+        <h2>Inscription aux ateliers</h2>
+        <ul>
+            <li>Page d’événements permettant aux étudiants de consulter le calendrier des ateliers.</li>
+            <li>Inscription directe avec confirmation de l’inscription.</li>
+            <li>Suivi des taux de participation et notifications automatiques avant les ateliers.</li>
+            <li>Gestion des images pour les événements et affichage sur les pages correspondantes.</li>
+        </ul>
+    </div>
+
+    <div class="mission">
+        <h2>Migration du site internet</h2>
+        <ul>
+            <li>Analyse et adaptation de la charte graphique pour la migration vers le site institutionnel.</li>
+            <li>Transfert des contenus, fichiers et images pour le nouveau site.</li>
+            <li>Tests de compatibilité et résolution de problèmes liés au serveur, CSS et URLs.</li>
+            <li>Finalisation des ajustements graphiques pour assurer une continuité de l’expérience utilisateur.</li>
+            <li>Rédaction de la documentation technique pour faciliter la maintenance future.</li>
+        </ul>
+    </div>
+</div>
+
+
+
+</body>
+</html>

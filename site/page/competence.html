@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences BTS SLAM</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ==================== Configuration des Styles Unifiés ==================== */
+
+        /* Styles spécifiques à la première carte (Support et Mac Header) */
+        .card-support-style {
+            max-width: 900px; /* Taille légèrement augmentée pour le contenu */
+            width: 100%;
+            padding: 24px;
+            border: 1px solid #0d1117; 
+            border-radius: 10px; 
+            background-color: #000; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-support-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .mac-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .mac-header span {
+            display: inline-block;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+        }
+
+        .mac-header .red { background-color: #ff5f57; }
+        .mac-header .yellow { background-color: #ffbd2e; }
+        .mac-header .green { background-color: #28c941; }
+
+        .card-title-support {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e6e6ef;
+            text-align: center; 
+            margin: 0;
+        }
+
+        .card-tag-support {
+            display: inline-block;
+            font-size: 10px;
+            border-radius: 5px;
+            background-color: #0d1117;
+            padding: 4px 8px;
+            margin-block-end: 12px;
+            color: #dcdcdc;
+        }
+
+        /* Styles pour masquer/afficher le code-editor (Carte 1) */
+        .code-editor-support {
+            background-color: #0d1117;
+            color: #dcdcdc;
+            font-family: "Playfair Display", serif;
+            font-size: 14px; 
+            line-height: 1.5; 
+            border-radius: 5px; 
+            overflow: auto;
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+            padding: 0 15px; 
+            transition: max-height 0.5s ease-in-out, opacity 0.4s ease, margin-top 0.5s ease, padding 0.5s ease;
+        }
+
+        .code-editor-support.show {
+            max-height: 650px; 
+            opacity: 1;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #333; /* Ajout d'une bordure visible */
+        }
+
+        /* Styles pour les titres dans le code-editor (Carte 1) */
+        .code-editor-support h3 {
+            font-size: 1.1rem;
+            color: #00ffff; /* Utilisé le vert vif du thème Glitch pour la cohérence */
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 3px;
+        }
+        .code-editor-support pre code strong {
+            color: #00ffff; /* Couleur d'accentuation */
+        }
+
+        /* Conteneur pour le titre et la flèche, rendu cliquable (Carte 1) */
+        .card-header-clickable {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        /* Style du bouton de copie (Carte 1) */
+        
+
+
+        /* ==================== Styles Glitch (Carte 2) ==================== */
+        .glitch-vars {
+            --btn-animation-speed: 1s; 
+            --btn-shadow-color: #00ffff; 
+            --glitch-text-color: rgb(9, 255, 0);
+            --font-family: "Playfair Display", serif;
+        }
+
+        /* Masque le défilement horizontal causé par l'effet de glitch */
+        body { overflow-x: hidden; }
+
+        @keyframes chitchat {
+            0% { content: "###################### [LOCK] ######################"; }
+            10% { content: "^^{^^^{^^^{^^^{^^^{^^^ [INIT] ^^^^^{^^^^{^^^{^^^{^^"; }
+            20% { content: "#$_#$_#$_#$_#$_#$_#$_#$ [SYNC] #$_#$_#$_#$_#$_#$_#$_"; }
+            30% { content: "#{+.#{+.#{+.#{+.#{+.#{ [SCAN] #{+.#{+.#{+.#{+.#{+.#"; }
+            40% { content: "?{4@%?{4@%?{4@%?{4@%?{4 [PROC] ?{4@%?{4@%?{4@%?{4@%"; }
+            50% { content: "?2@%?2@%?2@%?2@%?2@%?2 [FAIL] ?2@%?2@%?2@%?2@%?2@%?2"; }
+            60% { content: "?{%:%?{%:%?{%:%?{%:%?{%:% [PING] ?{%:%?{%:%?{%:%?{%:%"; }
+            70% { content: "{4%0%{4%0%{4%0%{4%0%{4%0% [STOP] {4%0%{4%0%{4%0%{4%0%"; }
+            80% { content: "{0%{0%{0%{0%{0%{0%{0%{0% [GO] {0%{0%{0%{0%{0%{0%{0%"; }
+            90% { content: "444444444444444444444444 [READ] 4444444444444444444444"; }
+            100% { content: ""; } 
+        }
+
+        .glitching {
+           
+            border-color: var(--glitch-text-color) !important;
+        }
+
+        .glitching #card-title-cyber {
+            color: transparent !important; 
+            font-family: monospace,Roboto, sans-serif;
+            display: block; 
+            white-space: nowrap; /* Empêche le retour à la ligne du titre original */
+        }
+
+        .glitching #card-title-cyber::before {
+            content: "SYSTEM_ACCESS_LOCK"; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-align: center; 
+            color:rgb(9, 255, 0); 
+            font-weight: 10000;
+            font-size: 1.5rem; 
+            letter-spacing: 0.1rem;
+            animation: chitchat var(--btn-animation-speed) infinite linear alternate; 
+            display: block; 
+            width: 100%;
+            overflow: hidden; 
+            padding-left: 5px; 
+        }
+
+        /* Card Expansion CSS (Carte 2) */
+        .expandable-card-cyber {
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            overflow: hidden; 
+            max-width: 900px; /* Taille cohérente avec l'autre carte */
+            width: 100%;
+        }
+
+        .compact {
+            height: 100px;
+        }
+
+        .expanded {
+            height: 600px; /* Hauteur augmentée pour contenir le texte */
+            border-color: #ffff !important;
+        }
+        
+        #card-header-cyber {
+            cursor: pointer;
+            padding-bottom: 1rem; 
+        }
+
+        .content-full-cyber {
+            opacity: 0;
+            overflow-y: auto; 
+            transition: opacity 0.5s ease 0.2s; 
+            padding-right: 1rem; /* Pour l'espace de défilement */
+        }
+
+        .expanded .content-full-cyber {
+            opacity: 1;
+        }
+
+        /* Styles de contenu pour la carte 2 */
+        .content-full-cyber h3 {
+             color: #00ffff;
+             font-weight: bold;
+             margin-top: 1rem;
+             border-bottom: 1px dashed #333;
+             padding-bottom: 0.25rem;
+        }
+        .content-full-cyber strong {
+            color: #00ffff;
+        }
+        .img-link img {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30;
+  }
+  
+   .img-link img:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+   @media screen and (max-width: 600px) {
+    .img-link img {
+      width: 80px; /* plus petit sur mobile */
+    }
+}
+ body{
+    background-color: #000000;
+    color: white;
+    font-family: "Playfair Display", serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+ }
+
+    </style>
+    <script>
+        // Configuration de Tailwind (police Inter)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+       
+    </script>
+
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/fusee.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<a id="rocket-to-top" class="rocket-to-top" href="#" aria-label="Retour en haut de page">
+    </a>
+
+<body >
+    <a href="../index.html" class="img-link">
+        <picture>
+          <source media="(max-width: 600px)" srcset="../image/logoNoirResponsive.png">
+          <img src="../image/logoNoir.png" alt="logo">
+        </picture>
+      </a>
+      <div class="bodyMenu">
+
+    <button class="burger-menu" aria-label="Ouvrir le menu">
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+    </button>
+
+    <nav class="overlay-menu">
+        <div id="stars-containerMenu" class="stars-containerMenu"></div>
+
+        <ul class="menu-links">
+            <li><a href="cv.html">Cv</a></li>
+            <li><a href="competence.html">Compétences</a></li>
+            <li><a href="stages.html">Stages</a></li>
+            <li><a href="veille.html">Veilles</a></li>
+            <li><a href="projet.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</div>
+<script src="../js/menu.js"></script>
+<script src="../js/fusee.js"></script>
+
+
+
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-center text-white-400">
+        Compétences BTS SLAM
+    </h1>
+
+    <!-- ==================== CARTE 1: SUPPORT ET SERVICES (MAC STYLE) ==================== -->
+    <div class="card-support-style">
+        <div class="mac-header">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+        </div>
+        
+
+        <div class="card-header-clickable" onclick="toggleCompetencesSupport()">
+            <span class="card-title-support">Support et mise à disposition de services informatiques</span>
+            <svg id="arrow-support" class="arrow-icon w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+
+
+        <div id="competences-support-content" class="code-editor-support">
+            
+            
+            <h3>1.1 Gestion du patrimoine informatique</h3>
+            <pre><code><strong>1.1.1.</strong> Recenser et identifier les ressources numériques</code></pre>
+           <pre><code><strong>1.1.2.</strong> Exploiter des référentiels, normes et standards adoptés par le prestataire informatique </code></pre>
+            <pre><code><strong>1.1.3.</strong> Mettre en place et vérifier les niveaux d’habilitation associés à un service </code></pre>
+            <pre><code><strong>1.1.4.</strong> Vérifier les conditions de la continuité d’un service informatique </code></pre>
+            <pre><code><strong>1.1.5.</strong> Gérer des sauvegardes </code></pre>
+            <pre><code><strong>1.1.6.</strong> Vérifier le respect des règles d’utilisation des ressources numériques </code></pre>
+           
+             <h3>1.2 Réponse aux incidents et aux demandes d’assistance et d’évolution</h3>
+             <a href="journeeIntergration.html"><button class="copy-button bg-cyan-400 text-black px-3 py-1 rounded-md text-sm float-right mb-2">Voir 1 projet</button></a>
+            <pre><code><strong>1.2.1.</strong> Collecter, suivre et orienter des demandes </code></pre>
+            <pre><code><strong>1.2.2.</strong> Traiter des demandes concernant les services réseau et système, applicatifs</code></pre>
+            <pre><code><strong>1.2.3.</strong> Traiter des demandes concernant les applications </code></pre>
+
+             
+            <h3>1.3 Développement de la présence en ligne de l’organisation</h3>
+            <a href="journeeIntergration.html"><button class="copy-button bg-cyan-400 text-black px-3 py-1 rounded-md text-sm float-right mb-2">Voir 1 projet</button></a>
+            <pre><code><strong>1.3.1.</strong> Participer à la valorisation de l’image de l’organisation sur les médias numériques<br> en tenant compte du cadre juridique et des enjeux économiques</code></pre>
+            <pre><code><strong>1.3.2.</strong> Référencer les services en ligne de l’organisation et mesurer leur visibilité </code></pre>
+            <pre><code><strong>1.3.3.</strong> Participer à l’évolution d’un site Web exploitant les données de l’organisation </code></pre>
+            
+            <h3>1.4 Travail en mode projet</h3>
+            <pre><code><strong>1.4.1.</strong> Analyser les objectifs et les modalités d’organisation d’un projet</code></pre>
+            <pre><code><strong>1.4.2.</strong> Planifier les activités</code></pre>
+            <pre><code><strong>1.4.3.</strong> Évaluer les indicateurs de suivi d’un projet et analyser les écarts</code></pre>
+            
+            <h3>1.5 Mise à disposition des utilisateurs d’un service informatique</h3>
+            <pre><code><strong>1.5.1.</strong> Réaliser les tests d’intégration et d’acceptation d’un service </code></pre>
+            <pre><code><strong>1.5.2.</strong> Déployer un service</code></pre>
+            <pre><code><strong>1.5.3.</strong> Accompagner les utilisateurs dans la mise en place d’un service</code></pre>
+            
+            <h3>1.6 Organisation de son développement professionnel</h3>
+            <pre><code><strong>1.6.1.</strong> Mettre en place son environnement d’apprentissage personnel</code></pre>
+            <pre><code><strong>1.6.2.</strong> Mettre en œuvre des outils et stratégies de veille informationnelle</code></pre>
+            <pre><code><strong>1.6.3.</strong> Gérer son identité professionnelle</code></pre>
+            <pre><code><strong>1.6.4.</strong> Développer son projet professionnel</code></pre>
+        </div>
+    </div>
+
+
+    <!-- ==================== CARTE 2: CYBERSÉCURITÉ (GLITCH STYLE) ==================== -->
+    <div id="expandable-card-cyber" 
+        class="expandable-card-cyber compact bg-black rounded-xl shadow-2xl p-6 flex flex-col justify-start border-1 border-white hover:border-cyan-400 transition-colors duration-300 glitch-vars">
+        
+        <div id="card-header-cyber" class="flex justify-between items-start" onclick="toggleCardExpansionCyber()">
+            <h2 id="card-title-cyber" class="text-2xl font-bold text-white relative flex-1 mr-4 text-center">
+                Cybersécurité des services informatiques
+            </h2>
+            <svg id="arrow-cyber" class="w-6 h-6 text-indigo-300 transform transition-transform duration-500" 
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+        
+        <div id="status-debug" class="text-xs font-mono text-indigo-400 mb-2">État: Compact</div>
+
+        <div class="content-full-cyber flex-1 text-sm md:text-base">
+            <p class="text-gray-300 pr-4">
+                
+                <h3>3.1 Protection des données à caractère personnel</h3>
+                <br><strong>3.1.1.</strong> Recenser les traitements sur les données à caractère personnel au sein de l'organisation
+                <br><strong>3.1.2.</strong> Identifier les risques liés à la collecte, au traitement, au stockage et à la diffusion des données à caractère personnel
+                <br><strong>3.1.3.</strong> Appliquer la réglementation en matière de collecte, de traitement et de conservation des données à caractère personnel (RGPD)
+                <br><strong>3.1.4.</strong> Sensibiliser les utilisateurs à la protection des données à caractère personnel
+                
+                <h3>3.2 Préservation de l'identité numérique de l'organisation</h3>
+                <br><strong>3.2.1.</strong> Protéger l'identité numérique d'une organisation
+                <br><strong>3.2.2.</strong> Déployer les moyens appropriés de preuve électronique
+                 
+                <h3>3.3 Sécurisation des équipements et des usages des utilisateurs</h3><a href="journeeIntergration.html"><button class="copy-button bg-cyan-400 text-black px-3 py-1 rounded-md text-sm float-right mb-2">Voir 1 projet</button></a>
+                <br><strong>3.3.1.</strong> Informer les utilisateurs sur les risques associés à l'utilisation d'une ressource numérique et promouvoir les bons usages à adopter
+                <br><strong>3.3.2.</strong> Identifier les menaces et mettre en œuvre les défenses appropriées 
+                <br><strong>3.3.3.</strong> Gérer les accès et les privilèges appropriés
+                <br><strong>3.3.4.</strong> Vérifier l'efficacité de la protection
+                
+                <h3>3.4 Garantie de la disponibilité, de l'intégrité et de la confidentialité des services informatiques et des données de l'organisation face à des cyberattaques</h3>
+                <br><strong>3.4.1.</strong> Caractériser les risques liés à l'utilisation malveillante d'un service informatique
+                <br><strong>3.4.2.</strong> Recenser les conséquences d'une perte de disponibilité, d'intégrité ou de confidentialité
+                <br><strong>3.4.3.</strong> Identifier les obligations légales qui s'imposent en matière d'archivage et de protection des données de l'organisation
+                <br><strong>3.4.4.</strong> Organiser la collecte et la conservation des preuves numériques
+                <br><strong>3.4.5.</strong> Appliquer les procédures garantissant le respect des obligations légales
+                
+                <h3>3.5 Cyber sécurisation d’une solution applicative et de son développement</h3>
+                <strong>3.5.1.</strong> Participer à la vérification des éléments contribuant à la qualité d'un développement informatique
+                <br><strong>3.5.2.</strong> Prendre en compte la sécurité dans un projet de développement d'une solution applicative
+                <br><strong>3.5.3.</strong> Mettre en œuvre et vérifier la conformité d'une solution applicative et de son développement à un référentiel, une norme ou un standard de sécurité
+                <br><strong>3.5.4.</strong> Prévenir les attaques
+                <br><strong>3.5.5.</strong> Analyser les connexions (logs)
+                <br><strong>3.5.6.</strong> Analyser des incidents de sécurité, proposer et mettre en œuvre des contre-mesures
+            </p>
+            
+            <div class="mt-4 p-3 bg-gray-700 rounded-lg">
+                <p class="text-lg font-mono text-green-400">Accès SÉCURISÉ.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==================== FONCTIONS CARTE 1 (SUPPORT) ====================
+
+        /**
+         * Bascule l'affichage du contenu des compétences et fait pivoter la flèche.
+         */
+        function toggleCompetencesSupport() {
+            const content = document.getElementById('competences-support-content');
+            const arrow = document.getElementById('arrow-support');
+
+            if (!content.classList.contains('show')) {
+                content.classList.add('show');
+                arrow.classList.add('rotated');
+            } else {
+                content.classList.remove('show');
+                arrow.classList.remove('rotated');
+            }
+        }
+
+        /**
+         * Copie le texte brut des compétences dans le presse-papiers.
+         * @param {Event} event - L'événement de clic.
+         */
+        function copyCompetencesSupport(event) {
+            // Empêche le clic sur le bouton de déclencher l'événement toggleCompetencesSupport()
+            event.stopPropagation(); 
+            
+            const contentDiv = document.getElementById('competences-support-content');
+            if (!contentDiv) { return; }
+
+            // Clone pour ignorer le bouton de copie dans le texte
+            const clone = contentDiv.cloneNode(true);
+            const copyButton = clone.querySelector('.copy-button');
+            if (copyButton) {
+                copyButton.remove();
+            }
+            
+            const textToCopy = clone.textContent.trim();
+
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            
+            // Positionner le textarea hors écran
+            textarea.style.position = 'fixed';
+            textarea.style.top = 0;
+            textarea.style.left = 0;
+            textarea.style.opacity = 0;
+            
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                const msg = successful ? 'Copié !' : 'Erreur de copie.';
+                
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = msg;
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2500);
+
+            } catch (err) {
+                console.error('Erreur lors de la tentative de copie', err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+        
+        // ==================== FONCTIONS CARTE 2 (CYBERSÉCURITÉ / GLITCH) ====================
+
+        function updateStatus(status) {
+            const debugElement = document.getElementById('status-debug');
+            if (debugElement) {
+                debugElement.textContent = `État: ${status}`;
+                debugElement.classList.remove('text-indigo-400', 'text-cyan-400', 'text-red-400');
+                if (status === 'Glitching...') {
+                    debugElement.classList.add('text-red-400');
+                } else if (status === 'Expanded') {
+                    debugElement.classList.add('text-cyan-400');
+                } else {
+                    debugElement.classList.add('text-indigo-400');
+                }
+            }
+        }
+
+        /**
+         * Gère l'expansion de la carte Cybersécurité avec l'effet Glitch.
+         */
+        function toggleCardExpansionCyber() {
+            const card = document.getElementById('expandable-card-cyber');
+            const arrow = document.getElementById('arrow-cyber');
+            
+            if (card.classList.contains('glitching')) {
+                console.log("Clic ignoré pendant le Glitch.");
+                return;
+            }
+
+            // 1. Expansion (avec Glitch)
+            if (card.classList.contains('compact')) {
+                
+                updateStatus('Glitching...');
+                
+                card.classList.add('glitching');
+                
+                setTimeout(() => {
+                    card.classList.remove('glitching');
+                    
+                    card.classList.remove('compact');
+                    card.classList.add('expanded');
+                    
+                    arrow.style.transform = 'rotate(180deg)';
+                    updateStatus('Expanded');
+
+                }, 500); // Durée de l'effet Glitch
+
+            } 
+            // 2. Rétraction (sans Glitch)
+            else if (card.classList.contains('expanded')) {
+                
+                card.classList.remove('expanded');
+                card.classList.add('compact');
+                
+                arrow.style.transform = 'rotate(0deg)';
+                updateStatus('Compact');
+            }
+        }
+        
+        // Initialisation de l'état au chargement pour la carte Glitch
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus('Compact');
+        });
+    </script>
+</body>
+</html>

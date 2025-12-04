@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Me</title>
+<link rel="stylesheet" href="../css/cv.css">
+<link rel="stylesheet" href="../css/contact.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<a id="rocket-to-top" class="rocket-to-top" href="#" aria-label="Retour en haut de page">
+    </a>
+
+<body>
+    <a href="../index.html" class="img-link">
+        <picture>
+          <source media="(max-width: 600px)" srcset="../image/logoNoirResponsive.png">
+          <img src="../image/logoNoir.png" alt="logo">
+        </picture>
+      </a>
+      <div class="bodyMenu">
+
+    <button class="burger-menu" aria-label="Ouvrir le menu">
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+    </button>
+
+    <nav class="overlay-menu">
+        <div id="stars-containerMenu" class="stars-containerMenu"></div>
+
+        <ul class="menu-links">
+            <li><a href="cv.html">Cv</a></li>
+            <li><a href="competence.html">Compétences</a></li>
+            <li><a href="stages.html">Stages</a></li>
+            <li><a href="veille.html">Veilles</a></li>
+            <li><a href="projet.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</div>
+<script src="../js/menu.js"></script>
+    <br><br><br>    <br><br><br>    <br><br><br>  
+    <div class="bodyContact">
+<div class="carte">
+    <div class="carte2">
+      <div class="contact-text">Vient<br> mon enfant</div>
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="nom" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" rows="3" required></textarea>
+        <input type="hidden" name="_subject" value="Nouveau message du formulaire Contact">
+        <button type="submit">Envoyer</button>
+        <div id="form-status" class="success-message"></div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
