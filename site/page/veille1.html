@@ -1,118 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille IA et Art - Artiflex Studios</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 25px 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 30px auto;
-        }
-        section {
-            background-color: white;
-            padding: 25px 30px;
-            margin-bottom: 25px;
-            border-left: 6px solid #18bc9c;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        section h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        section ul {
-            list-style: disc inside;
-            margin-bottom: 15px;
-        }
-        section p {
-            margin-bottom: 10px;
-        }
-        .keywords span {
-            display: inline-block;
-            background-color: #18bc9c;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 5px 5px 0 0;
-            font-size: 0.9rem;
-        }
-        .image-placeholder {
-            width: 100%;
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #888;
-            font-size: 1.2rem;
-            margin-top: 15px;
-            border-radius: 5px;
-        }
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            margin-top: 30px;
-        }
-        @media(max-width: 600px){
-            section {
-                padding: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport de Stage 1er année</title>
+<link rel="stylesheet" href="../css/rapportStage.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/fusee.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
+<a id="rocket-to-top" class="rocket-to-top" href="#" aria-label="Retour en haut de page"></a>
+    
+
 <body>
+    <a href="../index.html" class="img-link">
+        <picture>
+          <source media="(max-width: 600px)" srcset="../image/logoNoirResponsive.png">
+          <img src="../image/logoNoir.png" alt="logo">
+        </picture>
+      </a>
+      <div class="bodyMenu">
 
-<header>
-    <h1>Veille IA et Art - Artiflex Studios</h1>
-</header>
+    <button class="burger-menu" aria-label="Ouvrir le menu">
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+        <div class="barMenu"></div>
+    </button>
 
-<div class="container">
+    <nav class="overlay-menu">
+        <div id="stars-containerMenu" class="stars-containerMenu"></div>
 
-    <section id="contexte">
+        <ul class="menu-links">
+            <li><a href="cv.html">Cv</a></li>
+            <li><a href="competence.html">Compétences</a></li>
+            <li><a href="stages.html">Stages</a></li>
+            <li><a href="veille.html">Veilles</a></li>
+            <li><a href="projet.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</div>
+<script src="../js/menu.js"></script>
+<script src="../js/fusee.js"></script>
+<script src="../js/etoile.js"></script>
+
+<!-- Couche SVG pour les constellations (Arrière-plan fixe) -->
+<svg id="constellationLayer" width="100%" height="100%"></svg>
+
+ <br>
+    <br><br>    
+<div id="report-container">
+    <h1>L'IA dans l'art </h1>
+
+    <div class="mission">
         <h2>Contexte</h2>
         <p>Artiflex Studios explore la possibilité d'intégrer massivement les fonctionnalités de l'IA dans ses futurs processus créatifs et de production pour se distinguer et maintenir sa compétitivité face aux géants du secteur et aux créateurs individuels équipés d'outils puissants.</p>
         <div class="image-placeholder">Image contexte</div>
-    </section>
+   </div>
 
-    <section id="problematique">
+      <div class="mission">
         <h2>Problématique</h2>
         <p>Est-il intéressant pour Artiflex Studios d'intégrer l'IA générative dans ses quatre domaines artistiques (musique, cinéma, jeux vidéo, arts visuels) pour maximiser l'innovation et la productivité ?</p>
         <div class="image-placeholder">Image problématique</div>
-    </section>
+    </div>
 
-    <section id="outils">
+     
+      
+        <div class="mission">
         <h2>Outils de veille</h2>
         <ul>
-            <li>Google Actualités</li>
+             <li>Google Actualités</li>
             <li>Réseaux sociaux</li>
             <li>Flipboard / Feedly / Magazine</li>
             <li>YouTube</li>
         </ul>
-        <div class="image-placeholder">Image outils</div>
-    </section>
+    </div>
+    
 
+      
+<div class="mission">
     <section id="mots-cles">
         <h2>Mots-clés</h2>
         <div class="keywords">
@@ -127,11 +95,11 @@
             <span>Impact IA Artistes</span>
             <span>Authenticité Œuvre IA</span>
             <span>Éthique Art IA</span>
-        </div>
-        <div class="image-placeholder">Image mots-clés</div>
-    </section>
+        </div></div>
 
-    <section id="resultats">
+  
+
+    <div class="mission">
         <h2>Résultats</h2>
         <ul>
             <li>Législation AI Act appliquée progressivement à partir du 1er août 2024.</li>
@@ -143,16 +111,13 @@
             <li>Mises à jour des générateurs d’images (Midjourney V7, Stable Diffusion) pour un meilleur contrôle stylistique et réalisme.</li>
             <li>Analyse par publications scientifiques sur le détournement des technologies de reconnaissance faciale par les artistes.</li>
         </ul>
-        <div class="image-placeholder">Image résultats</div>
-    </section>
-
-    <section id="conclusion">
+    </div>
+    <div class="mission">
         <h2>Conclusion</h2>
         <p>Oui, l'intégration de l'IA est non seulement inévitable mais essentielle pour l'innovation dans tous les domaines artistiques de Artiflex Studios.</p>
-        <div class="image-placeholder">Image conclusion</div>
-    </section>
+</div>  
 
-    <section id="sources">
+    <div class="mission">
         <h2>Sources</h2>
         <ul>
             <li>Textes officiels de l'AI Act (Parlement Européen)</li>
