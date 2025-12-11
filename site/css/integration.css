@@ -1,49 +1,14 @@
 
         :root {
-            --primary-blue: #38bdf8; /* sky-400 */
+            --primary-blue: #111; /* sky-400 */
             --dark-bg: #030712; /* gray-950 */
-            --card-bg: #111827; /* gray-900 */
+            --card-bg: #111; /* gray-900 */
         }
         
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            line-height: 1.6;
-            color: #d1d5db; /* gray-300 */
-            min-height: 100vh;
-            padding-top: 5rem; /* Espace pour le logo/menu */
-        }
+     
 
-        /* Conteneur principal du rapport */
-        .report-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--card-bg);
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15); /* Ombre subtile bleue */
-        }
-
-        /* Titres */
-        h1 {
-            color: var(--primary-blue);
-            font-size: 2.5rem;
-            font-weight: 700;
-            border-bottom: 3px solid #1f2937; /* gray-800 */
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        h2 {
-            color: #93c5fd; /* blue-300 */
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            padding-left: 0.5rem;
-            border-left: 4px solid var(--primary-blue);
-        }
+       
+       
 
         p, ul {
             margin-bottom: 1.25rem;
@@ -123,8 +88,8 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            background: rgba(56, 189, 248, 0.9);
-            color: #000;
+            background: black;
+            color: #ffffff;
             padding: 0.5rem 0;
             text-align: center;
             font-size: 0.875rem;

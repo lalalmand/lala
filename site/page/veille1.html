@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rapport de Stage 1er année</title>
+<link rel="stylesheet" href="../css/integration.css">
 <link rel="stylesheet" href="../css/rapportStage.css">
 <link rel="stylesheet" href="../css/menu.css">
 <link rel="stylesheet" href="../css/fusee.css">
@@ -78,7 +79,28 @@
         </ul>
     </div>
     
-
+<div class="mission">
+        <h2>Paramétrage</h2>
+        <p>Est-il intéressant pour Artiflex Studios d'intégrer l'IA générative dans ses quatre domaines artistiques (musique, cinéma, jeux vidéo, arts visuels) pour maximiser l'innovation et la productivité ?</p>
+         <div class="tickets-alignes">
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket3_Inte.png" alt="Ticket GLPI n°3 : Dysfonctionnement lié à l'affichage des compétences." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket1_Inte.png" alt="Ticket GLPI n°1 : Demande d'amélioration sur la recherche de développeurs." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket2_Inte.png" alt="Ticket GLPI n°2 : Bug dans la modification des données développeur." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+            <div class="image-wrapper">
+                <img src="../image/aterlierPro/Integration/ticket4_Inte.png" alt="Ticket GLPI n°4 : Problème de format de données dans le fichier JSON." onclick="openModal(this)">
+                <span class="hover-text">Cliquez pour agrandir</span>
+            </div>
+        </div>
+    </div>
       
 <div class="mission">
     <section id="mots-cles">
@@ -132,12 +154,22 @@
         </ul>
         <div class="image-placeholder">Image sources</div>
     </section>
+   <script>
+        function openModal(element) {
+            document.getElementById("modal-image").style.display = "flex";
+            document.getElementById("img01").src = element.src;
+            document.getElementById("caption").innerHTML = element.alt;
+        }
 
+        function closeModal() {
+            document.getElementById("modal-image").style.display = "none";
+        }
+    </script>
 </div>
 
 <footer>
     &copy; 2025 Artiflex Studios - Veille IA et Art
 </footer>
-
+ 
 </body>
 </html>
